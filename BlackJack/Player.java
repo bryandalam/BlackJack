@@ -15,6 +15,7 @@ public class Player
     public String Playername;
     public int handValue;
     public int bet;
+    public int money;
     Scanner scan = new Scanner(System.in);
     
 
@@ -27,24 +28,32 @@ public class Player
         this.MoneyAmnt = Amt;
         this.Playername = nm;
     }
-    
-    public int bet() {
-        System.out.println("How much would you like to bet?");
-        bet = scan.nextInt();
+    //sets bet amount and removes it from money amount
+    public int bet(int betAmnt) {
+        bet = betAmnt;
         MoneyAmnt = MoneyAmnt - bet;
         System.out.println("This is how much money you have left: " + this.MoneyAmnt + " And this is your bet: " + this.bet + ".");
         return MoneyAmnt;
     }
+    //changes money amount if you win or lose
+    public int changeMoney(int mn) {
+       money = mn;
+       MoneyAmnt += money;
+       return MoneyAmnt;
+    }
+        
     
+    //hit method
     public ArrayList hit(Deck deck) {
         hand.add(deck.deal());
         return hand;
         
         
     }
-    
+    //calculates the player's hand
     public int calculateHand() {
         for(Card object : hand) {
+            //How t determine what to make Ace value
             if (object.getFace() == "Ace") {
                 if((handValue += 11) < 21) {
                     object.setValue(1);

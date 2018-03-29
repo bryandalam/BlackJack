@@ -13,7 +13,7 @@ public class Blackjack extends Game
      */
     public static void main (String args[])
     {
-        // initialise instance variables
+        Game blackjack = new Game();
         
     }
 

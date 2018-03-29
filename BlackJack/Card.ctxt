@@ -9,4 +9,6 @@ comment3.params=
 comment3.target=java.lang.String\ getFace()
 comment4.params=r
 comment4.target=int\ setValue(int)
-numComments=5
+comment5.params=
+comment5.target=java.lang.String\ toString()
+numComments=6

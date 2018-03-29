@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 /**
  * Write a description of class Card here.
  *
@@ -24,18 +24,26 @@ public class Card
             value = 11;
         }
         else {
+            //sets numerical values from Strings to Ints
             value = Integer.parseInt(face);
         }
         
     }
+    //gets card value
     public int getValue() {
         return this.value;
     }
+    //gets face
     public String getFace() {
         return this.face;
     }
+    //changes card value(used with Aces)
     public int setValue(int r) {
         return this.value = r;
+    }
+    //toString method
+    public String toString() {
+        return ("Face: " + getFace() + "\t" + "Value: " + getValue());
     }
 
     
