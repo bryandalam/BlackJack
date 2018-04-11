@@ -15,7 +15,7 @@ public class Game
     Deck gameDeck = new Deck();
     Player dealer = new Player(5000, "Dealer");
     Player playerone = new Player(5000, name);
-    String response;
+    String hitorstay;
     int betAmnt;
 
     /**
@@ -26,40 +26,48 @@ public class Game
         System.out.println("What is your name?");
         name = r.next();
         play();
-
     }
     //plays the game
 
     public void play() {
         //player inputs bet
+        System.out.println("How much do you want to bet?");
         betAmnt = r.nextInt();
         playerone.bet(betAmnt);
         //deals initial cards
         dealCards(playerone);
         dealCards(dealer);
         //player one goes
-        playerone.calculateHand();
-        System.out.println(name + " would you like to hit or stay?");
-        response = r.next();
-        //hits until they say stop
-        while (response == "hit") {
-            playerone.hit(gameDeck);
-            playerone.calculateHand();
-            System.out.println("hit or stay?");
-           }
-        //once they say stay it immediately kicks to dealer turn
-        dealerTurn();
-        endGame();
-    }
+        System.out.println("Your cards are: " + playerone.showHand() + ". " + "Your hand equals: " + playerone.calculateHand() + ". "+ name + " would you like to hit?(y/n)");
+        hitorstay = r.next();
+        playerTurn();
+        }
     //deals two cards off the start to the two players
     public void dealCards(Player p) {
         p.hit(gameDeck);
         p.hit(gameDeck);
     }
+    //the player goes
+    public void playerTurn() {
+        if(hitorstay.equals("n")) {
+            dealerTurn();
+        }
+        while(hitorstay.equals("y")) {
+           playerone.hit(gameDeck);
+           System.out.println("Your cards are: " + playerone.showHand() + ". " + "Your hand equals: " + playerone.calculateHand() + ". "+ name + " would you like to hit or stay?(y/n)");
+           hitorstay = r.next();
+           if(hitorstay.equals("n")) {
+               dealerTurn();
+            }
+        }
+        
+    }
     //basically stays for the player and moves to the dealer for their turn. The dealer is forced to hit until greater than or equal to 17
     public void dealerTurn() {
+        System.out.println("The Dealer's cards are: " + dealer.showHand() + ". " + "The Dealer's hand equals: " + dealer.calculateHand());
         while (dealer.calculateHand() < 17) {
             dealer.hit(gameDeck);
+            System.out.println("The Dealer's cards are: " + dealer.showHand() + ". " + "The Dealer's hand equals: " + dealer.calculateHand());
         }
         //kicks to winner once the dealer is forced to stay
         winner();
@@ -74,9 +82,11 @@ public class Game
             winner = "dealer";
             playerone.changeMoney(betAmnt * -2);
         }
+        endGame();
     }
     //ends the game by returning the winner
     public String endGame() {
+        System.out.println("The winner is: " + winner);
         return winner;
     }
 }

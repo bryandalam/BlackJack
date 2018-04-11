@@ -15,13 +15,24 @@ public class Deck
      */
     public Deck()
     {
-        //initializes deck by going through loops and populates the deck based on int values connected to arrays in the Card class
-        deck = new ArrayList<Card>();
-        for(int a = 0; a <= 3; a++) {
-            for(int b = 0; b <= 12; b++) {
-                deck.add(new Card(a,b));
-                }
+        String[] SUITS = {
+            "Clubs", "Diamonds", "Hearts", "Spades"
+        };
+
+        String[] RANKS = {
+            "2", "3", "4", "5", "6", "7", "8", "9", "10",
+            "Jack", "Queen", "King", "Ace"
+        };
+
+        // initialize deck
+        
+        for (int i = 0; i < RANKS.length; i++) {
+            for (int j = 0; j < SUITS.length; j++) {
+                deck.add(new Card(RANKS[i],SUITS[j]));
             }
+        }
+
+       
         shuffle();
     }
     //shuffles the deck

@@ -8,15 +8,13 @@
 public class Card
 {
     public int value;
-    public String[] suits = {"Clubs", "Spades", "Hearts", "Diamonds"};
     public String suit;
-    public String faces[] = {"King", "Queen", "Jack", "10", "9", "8", "7", "6", "5", "4", "3", "2", "Ace"};
     public String face;
 
-    public Card(int fc, int st)
+    public Card(String fc, String st)
     {      
-        suit = suits[st];
-        face = faces[fc];
+        this.suit = st;
+        this.face = fc;
         if(face == "Jack" || face == "Queen" || face == "King") {
             value = 10;
         }
@@ -43,7 +41,7 @@ public class Card
     }
     //toString method
     public String toString() {
-        return ("Face: " + getFace() + "\t" + "Value: " + getValue());
+        return ("Face: " + getFace() + " " + "Value: " + getValue());
     }
 
     

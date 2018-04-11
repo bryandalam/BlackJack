@@ -41,8 +41,9 @@ public class Player
        MoneyAmnt += money;
        return MoneyAmnt;
     }
-        
-    
+    public ArrayList showHand() {
+        return hand;
+    }
     //hit method
     public ArrayList hit(Deck deck) {
         hand.add(deck.deal());
@@ -52,14 +53,12 @@ public class Player
     }
     //calculates the player's hand
     public int calculateHand() {
+      handValue = 0;
         for(Card object : hand) {
             //How t determine what to make Ace value
             if (object.getFace() == "Ace") {
                 if((handValue += 11) < 21) {
                     object.setValue(1);
-                }
-                else {
-                    object.setValue(11);
                 }
         }
         handValue += object.getValue();
