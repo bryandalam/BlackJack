@@ -77,12 +77,14 @@ public class Game
         if(playerone.calculateHand() > dealer.calculateHand() && playerone.calculateHand() <= 21) {
             winner = name;
             playerone.changeMoney(betAmnt * 2);
+            endGame();
         }
         if(dealer.calculateHand() > playerone.calculateHand() && dealer.calculateHand() <= 21) {
             winner = "dealer";
             playerone.changeMoney(betAmnt * -2);
+            endGame();
         }
-        endGame();
+        
     }
     //ends the game by returning the winner
     public String endGame() {
